@@ -6,7 +6,8 @@
 
     <meta charset="UTF-8">
     <title>TrainTime</title>
-
+    <link href="https://fonts.googleapis.com/css?family=Diplomata+SC|Open+Sans+Condensed:300|Playfair+Display+SC|Sawarabi+Mincho|Squada+One"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -15,17 +16,16 @@
 
     <div class="container">
 
-        <div class="jumbotron">
+        <div class="jumbotron transparent">
             <h1 class="text-center">Train Time Tracker</h1>
         </div>
-
 
         <div class="row">
 
             <div class="col-md-12">
 
                 <div class="card mb-4">
-                    <div class="card-body">
+                    <div id="styleTable" class="card-body">
                         <h3 class="card-title">Current Train Schedule</h3>
                         <table class="table table-sm table-hover" id='trainTable'>
                             <thead>
@@ -44,9 +44,10 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
-                <div class="card mb-4 p-4">
+                <div id="styleAddTrain" class="card mb-4 p-4">
                     <div class="card-body">
                         <h3 class="card-title">Add Train</h3>
                         <form>
@@ -72,6 +73,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 

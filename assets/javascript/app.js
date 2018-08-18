@@ -36,32 +36,46 @@ database.ref().on("child_added", function (childSnapshot) {
     var firstTrainTime = childSnapshot.val().firstTrainTime;
     var frequency = childSnapshot.val().frequency;
 
-    // Employee Info
     console.log(trainName);
     console.log(destination);
     console.log(firstTrainTime);
     console.log(frequency);
 
+    var firstTrainTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
+    console.log(firstTrainTimeConverted);
+
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    var diffTime = moment().diff(moment(firstTrainTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    var tRemainder = diffTime % frequency;
+    console.log(tRemainder);
+
+    var tMinutesTillTrain = frequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    var nextTrainFormatted = moment(nextTrain).format("LT")
+    console.log("ARRIVAL TIME: " + nextTrainFormatted);
+
+
+
+
+    // Create the new row
+    var newRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(destination),
+        $("<td>").text(frequency),
+        $("<td>").text(nextTrainFormatted),
+        $("<td>").text(tMinutesTillTrain),
+    );
+
+    // Append the new row to the table
+    $("#trainTable > tbody").append(newRow);
 });
 
-//     // Calculate the months worked using hardcore math
-//     // To calculate the months worked
-//     var empMonths = moment().diff(moment(empStart, "X"), "months");
-//     console.log(empMonths);
 
-//     // Calculate the total billed rate
-//     var empBilled = empMonths * empRate;
-//     console.log(empBilled);
 
-//     // Create the new row
-//     var newRow = $("<tr>").append(
-//         $("<td>").text(empName),
-//         $("<td>").text(empRole),
-//         $("<td>").text(empStartPretty),
-//         $("<td>").text(empMonths),
-//         $("<td>").text(empRate),
-//         $("<td>").text(empBilled)
-//     );
 
-//     // Append the new row to the table
-//     $("#employee-table > tbody").append(newRow);
